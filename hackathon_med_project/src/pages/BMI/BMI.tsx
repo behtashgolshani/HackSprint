@@ -1,10 +1,8 @@
-import { px } from "csx";
-import { TextField } from "@material-ui/core";
 import React from "react";
 import * as appStyle from "../../App.style";
 import * as style from "./BMI.style";
 
-const BMI = () => {
+const BMI: React.FC = () => {
   return (
     <div className={appStyle.body}>
       <h1 className={style.title}>BMI- Body Mass Index</h1>
