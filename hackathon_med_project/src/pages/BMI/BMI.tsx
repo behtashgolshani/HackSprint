@@ -1,5 +1,3 @@
-import { px } from "csx";
-import { TextField } from "@material-ui/core";
 import React from "react";
 import SplitPane, { Pane } from "react-split-pane";
 import { useState } from "react";
@@ -20,7 +18,6 @@ const BMI: React.FC = () => {
     }
   }, [weightValue, heightValue]);
   //{disableSearch ? "True" : "False";}
-
   return (
     <div className={appStyle.body}>
       <h1 className={style.title}>BMI - Body Mass Index</h1>

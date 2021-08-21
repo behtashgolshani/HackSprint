@@ -11,6 +11,6 @@ export const content = s({
   width: percent(90),
 });
 
-export const block = s({
-  marginTop: px(100),
-});
+export const references = {
+  fontSize: px(20),
+};

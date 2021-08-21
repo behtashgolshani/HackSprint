@@ -15,3 +15,7 @@ export const column = s({
 export const center = s({
   textAlign: "center",
 });
+
+export const menu = s({
+  minWidth: 176,
+});
