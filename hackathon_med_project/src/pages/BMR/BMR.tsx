@@ -1,17 +1,31 @@
-import { TextField } from "@material-ui/core";
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+} from "@material-ui/core";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import * as styling from "./BMR.style";
+
+type Gender = "male" | "female" | null | unknown;
 
 const BMR: React.FC = () => {
   const [ageValue, setAgeValue] = useState<number>(0);
   const [weightValue, setWeightValue] = useState<number>(0);
   const [heightValue, setHeightValue] = useState<number>(0);
   const [disableSearch, setDisableSearch] = useState<boolean>(false);
+  const [gender, setGender] = useState<Gender>();
 
   useEffect(() => {
-    if (ageValue >= 1 && heightValue >= 1 && weightValue >= 1) {
+    if (
+      ageValue >= 1 &&
+      heightValue >= 1 &&
+      weightValue >= 1 &&
+      gender !== null
+    ) {
       setDisableSearch(true);
     } else {
       setDisableSearch(false);
@@ -22,7 +36,6 @@ const BMR: React.FC = () => {
   //   return 0;
   // };
 
-  // {disableSearch ? "True" : "False"}
   return (
     <div>
       <div style={{ textAlign: "center" }}>
@@ -56,9 +69,23 @@ const BMR: React.FC = () => {
             onChange={(e) => setWeightValue(parseInt(e.target.value))}
             type="number"
           />
+          <p></p>
+          <FormControl>
+            <InputLabel>Gender</InputLabel>
+            <Select
+              label="select-gender"
+              value={gender}
+              onChange={(e) => setGender(e.target.value)}
+            >
+              <MenuItem value={"Male"}>Male</MenuItem>
+              <MenuItem value={"Female"}>Female</MenuItem>
+            </Select>
+          </FormControl>
           <p>
             Age: {ageValue} Height: {heightValue} Weight: {weightValue}
           </p>
+          <h3>Results:</h3>
+          <h4>{disableSearch ? "True" : ""}</h4>
         </div>
       </div>
     </div>
