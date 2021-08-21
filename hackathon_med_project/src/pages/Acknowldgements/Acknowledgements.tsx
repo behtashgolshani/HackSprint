@@ -1,10 +1,11 @@
 import React from "react";
 import * as style from "./Acknowledgements.style";
-import { body as appStyle } from "../../App.style";
+import * as appStyle from "../../App.style";
 
 const Acknowledgements: React.FC = () => {
   return (
     <div className={appStyle}>
+      <div className={style.content}>
       <h1 className={style.title}>Aknowledgements</h1>
       <h3>
         We would like to aknowledge these websites where we have got our
@@ -30,12 +31,37 @@ const Acknowledgements: React.FC = () => {
           BMR
         </a>
       </p>
+        <div>
+          <p>
+            Thanks to{" "}
+            <a href="https://wallpapercave.com/w/wp8387901">Wallpaper Cave</a>{" "}
+            for the background of the website.
+          </p>
+          <p>
+            Also thanks to{" "}
+            <a href="https://fonts.google.com/specimen/Quicksand">
+              Google Fonts
+            </a>{" "}
+            for the Quicksand font found on this website.
+          </p>
+        </div>
+        <hr color="black"></hr>
       <div>
         <h2>Created by</h2>
         <h3 className={style.behtash}>Behtash Golshani</h3>
         <h3 className={style.niko}>Niko Gabriel Verrios</h3>
         <h3 className={style.han}>Timothy Han</h3>
         <h3 className={style.jordan}>Timothy John Jordan</h3>
+        <p>
+            Visit our{" "}
+            <a href="https://github.com/behtashgolshani/HackSprint">
+              github repository
+            </a>{" "}
+            to clone this project:
+          </p>
+        </div>
+        <div className={appStyle.breakPage}></div>
+      </div>
       </div>
     </div>
   );

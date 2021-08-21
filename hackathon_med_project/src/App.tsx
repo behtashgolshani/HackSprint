@@ -13,7 +13,7 @@ import { createTheme, ThemeProvider } from "@material-ui/core";
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#000000",
+      main: "#1976d2",
     },
     secondary: { main: "#f1356d" },
   },

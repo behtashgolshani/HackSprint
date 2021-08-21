@@ -25,7 +25,7 @@ const HeaderBar: React.FC = () => {
           component={Link}
           to={routes.bmr.path}
         >
-          BMR
+          BMR Calculator
         </Button>
         <Button
           color="secondary"
@@ -35,15 +35,6 @@ const HeaderBar: React.FC = () => {
           to={routes.bmi.path}
         >
           BMI Calculator
-        </Button>
-        <Button
-          color="secondary"
-          className={style.indLinks}
-          size="small"
-          component={Link}
-          to={routes.riskPredictor.path}
-        >
-          Risk Predictor
         </Button>
         <Button
           color="secondary"

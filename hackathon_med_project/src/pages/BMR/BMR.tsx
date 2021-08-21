@@ -5,12 +5,12 @@ import {
   Select,
   TextField,
 } from "@material-ui/core";
-import { type } from "os";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { style } from "typestyle";
 import * as styling from "./BMR.style";
+import * as appStyle from "../../App.style";
 
 type Gender = "male" | "female" | null | unknown;
 
@@ -22,6 +22,10 @@ const BMR: React.FC = () => {
   const [gender, setGender] = useState<Gender>();
   const [output, setOutput] = useState<string>("");
   const [enableSearch, setEnableSearch] = useState<boolean>(true);
+  const [bmrOutput, setBmrOutput] = useState<string>("");
+  const [bmr, setBmr] = useState<number>(0);
+  const [calorie, setCalorie] = useState<number>(0);
+  const [calorieOutput, setCalorieOutput] = useState<string>("");
 
   useEffect(() => {
     if (
@@ -39,7 +43,7 @@ const BMR: React.FC = () => {
   }, [ageValue, heightValue, weightValue]);
 
   useEffect(() => {
-    setOutput(bmrCalculate(gender, ageValue, weightValue, heightValue));
+    setBmr(bmrCalculate(gender, ageValue, weightValue, heightValue));
   }, [gender, ageValue, weightValue, heightValue]);
 
   const bmrCalculate = (
@@ -48,38 +52,34 @@ const BMR: React.FC = () => {
     weightValue: number,
     heightValue: number
   ) => {
-    let value: unknown;
+    let value: number;
+    value = 0;
     if (gender === "Male") {
-      return (
-        "Your BMR is " +
+      value = parseFloat(
         (
           88.362 +
           13.397 * weightValue +
           4.799 * heightValue -
           5.677 * ageValue +
           0.5
-        )
-          .toFixed(2)
-          .toString() +
-        " calories"
+        ).toFixed(2)
       );
     } else if (gender === "Female") {
-      return (
-        "Your BMR is " +
+      value = parseFloat(
         (
           447.593 +
           9.247 * weightValue +
           3.098 * heightValue -
           4.33 * ageValue +
           0.5
-        )
-          .toFixed(2)
-          .toString() +
-        " calories"
+        ).toFixed(2)
       );
-    } else {
-      return "";
     }
+    return value;
+  };
+
+  const calorieCalculate = (bmr: number) => {
+    return parseFloat((bmr * 1.2 + 0.5).toFixed(0));
   };
 
   const calCalculate = (
@@ -125,11 +125,11 @@ const BMR: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className={appStyle.body}>
       <div style={{ textAlign: "center" }}>
         <h1>BMR - Basal Metabolic Rate Calculator</h1>
       </div>
-      <div className={styling.body}>
+      <div className={styling.content}>
         <p>
           Basal Metabolic Rate (BMR) refers to the rate at which the body uses
           energy while at rest to maintain vital functions such as breathing and
@@ -175,9 +175,10 @@ const BMR: React.FC = () => {
               <MenuItem value={"Female"}>Female</MenuItem>
             </Select>
           </FormControl>
-          <p>
-            Age: {ageValue} Height: {heightValue} Weight: {weightValue} Gender:{" "}
-            {gender}
+          <p className={styling.comment}>
+            Please be aware that BMR measures the amount of calories burned when
+            sedentary. This does not take into account other health factors and
+            amount of exercise done. It is only an average estimate.
           </p>
           <h2>{disableSearch ? "Results:" : ""}</h2>
           <h3 className={styling.requirement1}>
@@ -192,6 +193,7 @@ const BMR: React.FC = () => {
             </h3>
           </h3>
         </div>
+        <div className={appStyle.breakPage}></div>
       </div>
     </div>
   );
