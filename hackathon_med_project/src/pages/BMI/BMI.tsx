@@ -122,12 +122,61 @@ const BMI: React.FC = () => {
         ></TextField>{" "}
         <h1>BMI Results</h1>
         <p> {disableSearch ? bmiCalculate(heightValue, weightValue) : ""}</p>
-        <p>{underweightSensor ? "You are a skinny fuck" : ""}</p>
-        <p>{normalSensor ? "You're an average joe" : ""}</p>
-        <p>{overweightSensor ? "A bit worrying there mate" : ""}</p>
-        <p>{obesitySensor ? "Dw you're just fluffy" : ""}</p>
-        <p>{damnSensor ? "DAMMNNNN you dead" : ""}</p>
+        <h3 style={{ color: "#004DCF" }}>
+          {underweightSensor ? "You are considered underweight" : ""}
+        </h3>
+        <p className={style.under}>
+          {underweightSensor
+            ? "Consider having a more nutrition-dense meal and some light exercises in your day-to-day routine or best if you consult your doctor for proper health directions to ensure you stay in the healthy range. You may find yourself to have more energy and be able to fight off infections if you strive for the normal range."
+            : ""}
+        </p>
+        <h3 className={style.normal}>
+          {normalSensor ? "You are healthy!" : ""}
+        </h3>
+        <p className={style.normal}>
+          {" "}
+          {normalSensor
+            ? "You are healthy! You should try to maintain this feat by enjoying well-balanced diets and having a physically active day-to-day life. "
+            : ""}
+        </p>
+        <h3 className={style.over}>
+          {overweightSensor ? "You are considered overweight" : ""}
+        </h3>
+        <p className={style.over}>
+          {overweightSensor
+            ? "Keeping to a healthy weight is important and ideal. Consider keeping to a well-balanced diet and commit to a physically active lifestyle as being overweight may have many health complications involved."
+            : ""}
+        </p>
+        <h3 className={style.obese}>
+          {obesitySensor ? "You are considered obese" : ""}
+        </h3>
+        <p className={style.obese}>
+          {obesitySensor
+            ? "Having a high BMI correlates to having a high risk of being susceptible to cardiovascular diseases. Keeping to a physically active lifestyle and keeping to a well-balanced diet can help decrease your BMI. Remember, the little changes in life make significant changes."
+            : ""}
+        </p>
+        <h3 className={style.damn}>
+          {damnSensor ? "You are considered extremely obese" : ""}
+        </h3>
+        <p className={style.damn}>
+          {damnSensor
+            ? "It is important that you consult your health profession such as a doctor or a dietitian. Your health professional may offer you many options to support you in losing weight."
+            : ""}
+        </p>
       </div>
+      <p className={style.disclaimer}>
+        {" "}
+        Be aware that the BMI is not an accurate indicator of how healthy you
+        are. It does not factor your age, how muscular you are, your ethnicity,
+        your gender and many others… If you are worried about your well-being
+        please consult your trusted health practitioner. Additionally, if you
+        are not feeling well during these difficult times visit
+      </p>
+      <p style={{ textAlign: "center" }}>
+        <a href={"https://www.beyondblue.org.au/"}>
+          https://www.beyondblue.org.au/
+        </a>
+      </p>
     </div>
   );
 };
