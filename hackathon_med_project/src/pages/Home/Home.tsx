@@ -10,7 +10,7 @@ const Home: React.FC = () => {
         <h3>Welcome to our MelbUni Hack Project!</h3>
         <p>
           This is a website that serves the purpose of informing people about
-          metabloic diseases and how you can prevent yourself from succumbing to
+          metabolic diseases and how you can prevent yourself from succumbing to
           these diseases. Take the time to look at our features and discover how
           you can assess your risk!{" "}
         </p>
