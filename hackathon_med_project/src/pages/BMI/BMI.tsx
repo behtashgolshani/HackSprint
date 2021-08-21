@@ -14,6 +14,7 @@ const BMI: React.FC = () => {
   const [weightValue, setWeightValue] = useState<number>(0);
   const [heightValue, setHeightValue] = useState<number>(0);
   const [disableSearch, setDisableSearch] = useState<boolean>(false);
+  const [enableSearch, setEnableSearch] = useState<boolean>(true);
   const [underweightSensor, setUnderweightSensor] = useState<boolean>(false);
   const [normalSensor, setNormalSensor] = useState<boolean>(false);
   const [overweightSensor, setOverweightSensor] = useState<boolean>(false);
@@ -87,7 +88,9 @@ const BMI: React.FC = () => {
   useEffect(() => {
     if (weightValue >= 1 && heightValue >= 1) {
       setDisableSearch(true);
+      setEnableSearch(false);
     } else {
+      setEnableSearch(true);
       setDisableSearch(false);
     }
   }, [weightValue, heightValue]);
@@ -120,7 +123,7 @@ const BMI: React.FC = () => {
           style={{ textAlign: "center" }}
           onChange={(e) => setHeightValue(parseFloat(e.target.value))}
         ></TextField>{" "}
-        <h1>BMI Results</h1>
+        <h1>{disableSearch ? "BMI Results" : ""}</h1>
         <p> {disableSearch ? bmiCalculate(heightValue, weightValue) : ""}</p>
         <h3 style={{ color: "#004DCF" }}>
           {underweightSensor ? "You are considered underweight" : ""}
@@ -163,6 +166,7 @@ const BMI: React.FC = () => {
             ? "It is important that you consult your health profession such as a doctor or a dietitian. Your health professional may offer you many options to support you in losing weight."
             : ""}
         </p>
+        <h2 style={{ textAlign: "center" }}>Please enter your details</h2>
       </div>
       <p className={style.disclaimer}>
         {" "}
