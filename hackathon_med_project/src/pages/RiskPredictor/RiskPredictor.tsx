@@ -1,10 +1,10 @@
 import React from "react";
-import * as style from "./RiskPredictor.style";
+import * as appStyle from "../../App.style";
 
-const RiskPredictor: React.FC = () => {
+const RiskPredictor = () => {
   return (
-    <div>
-      <h1 className={style.title}>Risk Predictor!</h1>
+    <div className={appStyle.body}>
+      <h1>Risk Predictor </h1>
     </div>
   );
 };

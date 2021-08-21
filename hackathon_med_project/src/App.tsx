@@ -1,6 +1,6 @@
 import React from "react";
 import * as style from "./App.style";
-import { HeaderBar } from "./features/HeaderBar";
+import HeaderBar from "./features/HeaderBar/HeaderBar";
 import {
   BrowserRouter as Router,
   Route,
@@ -9,14 +9,13 @@ import {
 } from "react-router-dom";
 import routes from "./config/routes";
 import { createTheme, ThemeProvider } from "@material-ui/core";
-import { purple } from "@material-ui/core/colors";
 
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#fefefe",
+      main: "#000000",
     },
-    secondary: purple,
+    secondary: { main: "#f1356d" },
   },
   typography: {
     fontFamily: "Quicksand",
@@ -33,26 +32,24 @@ const App: React.FC = () => {
       <Router>
         <div className={style.app}>
           <HeaderBar />
-          <div className={style.content}>
-            <Switch>
-              {Object.values(routes).map((route, index) => {
-                return (
-                  <Route
-                    key={index}
-                    path={route.path}
-                    exact={route.exact}
-                    render={(props: RouteComponentProps) => (
-                      <route.component
-                        name={route.name}
-                        {...props}
-                        {...route.props}
-                      />
-                    )}
-                  />
-                );
-              })}
-            </Switch>
-          </div>
+          <Switch>
+            {Object.values(routes).map((route, index) => {
+              return (
+                <Route
+                  key={index}
+                  path={route.path}
+                  exact={route.exact}
+                  render={(props: RouteComponentProps) => (
+                    <route.component
+                      name={route.name}
+                      {...props}
+                      {...route.props}
+                    />
+                  )}
+                />
+              );
+            })}
+          </Switch>
         </div>
       </Router>
     </ThemeProvider>

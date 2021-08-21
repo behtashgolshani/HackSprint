@@ -2,7 +2,7 @@ import IRoute from "../interfaces/route";
 import BMI from "../pages/BMI/BMI";
 import BMR from "../pages/BMR/BMR";
 import RiskPredictor from "../pages/RiskPredictor/RiskPredictor";
-import { Home } from "../pages/Home/Home";
+import Home from "../pages/Home/Home";
 
 const home: IRoute = {
   path: "/",
