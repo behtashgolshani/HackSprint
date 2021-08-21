@@ -4,7 +4,9 @@ import { useState } from "react";
 import * as styling from "./BMR.style";
 
 const BMR: React.FC = () => {
-  const [textValue, setTextValue] = useState<number>();
+  const [ageValue, setAgeValue] = useState<number>();
+  const [weightValue, setWeightValue] = useState<number>();
+  const [heightValue, setHeightValue] = useState<number>();
 
   // const myFunc = (param: number) => {
   //   return 0;
@@ -22,25 +24,30 @@ const BMR: React.FC = () => {
           keeping warm.
         </p>
         <div className={styling.center}>
+          <p>Enter Age</p>
           <TextField
             size="medium"
             placeholder="Enter Value"
-            onChange={(e) =>
-              !isNaN(parseInt(e.target.value)) &&
-              setTextValue(parseInt(e.target.value))
-            }
+            onChange={(e) => setAgeValue(parseInt(e.target.value))}
+            type="number"
           />
-          <p>{textValue}</p>
-          {/* <form>
-            <label>
-              Age:
-              <Input type="number" name="age" />
-              Height:
-              <Input type="number" name="height" />
-              Weight:
-              <Input type="number" name="weight" />
-            </label>
-          </form> */}
+          <p>Enter Height</p>
+          <TextField
+            size="medium"
+            placeholder="Enter Value"
+            onChange={(e) => setHeightValue(parseInt(e.target.value))}
+            type="number"
+          />
+          <p>Enter Weight</p>
+          <TextField
+            size="medium"
+            placeholder="Enter Value"
+            onChange={(e) => setWeightValue(parseInt(e.target.value))}
+            type="number"
+          />
+          <p>
+            Age: {ageValue} Height: {heightValue} Weight: {weightValue}
+          </p>
         </div>
       </div>
     </div>
