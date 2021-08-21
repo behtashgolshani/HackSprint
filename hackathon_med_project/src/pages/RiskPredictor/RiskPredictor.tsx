@@ -1,12 +1,12 @@
 import React from "react";
 import * as appStyle from "../../App.style";
 
-const BMR = () => {
+const RiskPredictor = () => {
   return (
     <div className={appStyle.body}>
-      <h1>BMR Page </h1>
+      <h1>Risk Predictor </h1>
     </div>
   );
 };
 
-export default BMR;
+export default RiskPredictor;
