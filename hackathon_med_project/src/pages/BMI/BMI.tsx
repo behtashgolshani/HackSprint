@@ -9,6 +9,7 @@ const BMI: React.FC = () => {
   const [weightValue, setWeightValue] = useState<number>(0);
   const [heightValue, setHeightValue] = useState<number>(0);
   const [disableSearch, setDisableSearch] = useState<boolean>(false);
+  const [enableSearch, setEnableSearch] = useState<boolean>(true);
   const [underweightSensor, setUnderweightSensor] = useState<boolean>(false);
   const [normalSensor, setNormalSensor] = useState<boolean>(false);
   const [overweightSensor, setOverweightSensor] = useState<boolean>(false);
@@ -82,16 +83,56 @@ const BMI: React.FC = () => {
   useEffect(() => {
     if (weightValue >= 1 && heightValue >= 1) {
       setDisableSearch(true);
+      setEnableSearch(false);
     } else {
+      setEnableSearch(true);
       setDisableSearch(false);
     }
   }, [weightValue, heightValue]);
   //{disableSearch ? "True" : "False";}
   return (
     <div className={appStyle.body}>
-      <h1 className={style.title}>BMI - Body Mass Index</h1>
       <div className={style.content}>
-        <p className={style.title}>
+      <h1 className={style.title}>BMI - Body Mass Index</h1>
+      <p className={style.title}>
+        {" "}
+        The Body Mass Index measures the relationship between your height to
+        weight to determine if you are healthy. Use our BMI calculator to see
+        how healthy you are.
+      </p>{" "}
+      <h4 style={{ textAlign: "center" }}>Please enter your weight in kg:</h4>
+      <div style={{ textAlign: "center" }}>
+        <TextField
+          size="medium"
+          placeholder="Weight in kg"
+          type="number"
+          style={{ textAlign: "center" }}
+          onChange={(e) => setWeightValue(parseFloat(e.target.value))}
+        ></TextField>
+      </div>
+      <h4 style={{ textAlign: "center" }}>Please enter your height in cm:</h4>
+      <div style={{ textAlign: "center" }}>
+        <TextField
+          size="medium"
+          placeholder="Height in cm"
+          type="number"
+          style={{ textAlign: "center" }}
+          onChange={(e) => setHeightValue(parseFloat(e.target.value))}
+        ></TextField>{" "}
+        <h1>{disableSearch ? "BMI Results" : ""}</h1>
+        <p> {disableSearch ? bmiCalculate(heightValue, weightValue) : ""}</p>
+        <h3 style={{ color: "#004DCF" }}>
+          {underweightSensor ? "You are considered underweight" : ""}
+        </h3>
+        <p className={style.under}>
+          {underweightSensor
+            ? "Consider having a more nutrition-dense meal and some light exercises in your day-to-day routine or best if you consult your doctor for proper health directions to ensure you stay in the healthy range. You may find yourself to have more energy and be able to fight off infections if you strive for the normal range."
+            : ""}
+        </p>
+        <h3 className={style.normal}>
+          {normalSensor ? "You are healthy!" : ""}
+        </h3>
+        <p className={style.normal}>
           {" "}
           The Body Mass Index measures the relationship between your height to
           weight to determine if you are healthy. Use our BMI calculator to see
@@ -169,7 +210,9 @@ const BMI: React.FC = () => {
           Additionally, if you are not feeling well during these difficult times
           visit <a href={"https://www.beyondblue.org.au/"}>Beyond Blue</a>.
         </p>
+        <h2 style={{ textAlign: "center" }}>Please enter your details</h2>
         <div className={appStyle.breakPage}></div>
+      </div>
       </div>
     </div>
   );
