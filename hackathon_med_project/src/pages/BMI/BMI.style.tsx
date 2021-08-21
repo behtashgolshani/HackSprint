@@ -3,8 +3,7 @@ import { px } from "csx";
 
 export const title = s({
   textAlign: "left",
-  fontSize: px(36),
-  marginLeft: px(120),
+  marginLeft: px(470),
 });
 
 export const marginalise_left = s({
