@@ -5,8 +5,8 @@ import * as appStyle from "../../App.style";
 const Home: React.FC = () => {
   return (
     <div className={appStyle.body}>
-      <h1 className={style.title}>Welcome!</h1>
       <div className={style.content}>
+        <h1 className={style.title}>Welcome!</h1>
         <h3>Welcome to our MelbUni Hack Project!</h3>
         <p>
           This is a website that serves the purpose of informing people about
