@@ -32,9 +32,14 @@ const BMR: React.FC = () => {
     }
   }, [ageValue, heightValue, weightValue]);
 
-  // const myFunc = (param: number) => {
-  //   return 0;
-  // };
+  const bmrCalculate = (
+    gender: Gender,
+    ageValue: number,
+    weightValue: number,
+    heightValue: number
+  ) => {
+    return "True";
+  };
 
   return (
     <div>
@@ -73,7 +78,9 @@ const BMR: React.FC = () => {
           <FormControl>
             <InputLabel>Gender</InputLabel>
             <Select
+              className={styling.menu}
               label="select-gender"
+              autoWidth={true}
               value={gender}
               onChange={(e) => setGender(e.target.value)}
             >
@@ -85,7 +92,11 @@ const BMR: React.FC = () => {
             Age: {ageValue} Height: {heightValue} Weight: {weightValue}
           </p>
           <h3>Results:</h3>
-          <h4>{disableSearch ? "True" : ""}</h4>
+          <h4>
+            {disableSearch
+              ? bmrCalculate(gender, ageValue, weightValue, heightValue)
+              : ""}
+          </h4>
         </div>
       </div>
     </div>
