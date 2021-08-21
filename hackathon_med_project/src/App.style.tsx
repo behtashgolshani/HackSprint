@@ -1,8 +1,9 @@
 import { style as s } from "typestyle";
-import { px } from "csx";
 
-export const title = s({
+export const content = s({
   textAlign: "left",
-  fontSize: px(24),
-  marginLeft: px(120),
+});
+
+export const app = s({
+  color: "#000000",
 });
