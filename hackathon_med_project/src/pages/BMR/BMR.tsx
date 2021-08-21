@@ -4,18 +4,42 @@ import {
   MenuItem,
   Select,
   TextField,
-  FormHelperText,
 } from "@material-ui/core";
 import React from "react";
+import { useEffect } from "react";
 import { useState } from "react";
 import * as styling from "./BMR.style";
 
-const BMR: React.FC = () => {
-  const [textValue, setTextValue] = useState<number>();
-  const [gender, setGender] = useState<string>("");
+type Gender = "male" | "female" | null | unknown;
 
-  const handleChange = (event: any) => {
-    setGender(event.target.value);
+const BMR: React.FC = () => {
+  const [ageValue, setAgeValue] = useState<number>(0);
+  const [weightValue, setWeightValue] = useState<number>(0);
+  const [heightValue, setHeightValue] = useState<number>(0);
+  const [disableSearch, setDisableSearch] = useState<boolean>(false);
+  const [gender, setGender] = useState<Gender>();
+
+  useEffect(() => {
+    if (
+      ageValue >= 1 &&
+      heightValue >= 1 &&
+      weightValue >= 1 &&
+      gender !== null
+    ) {
+      setDisableSearch(true);
+    } else {
+      setDisableSearch(false);
+    }
+  }, [ageValue, heightValue, weightValue]);
+
+  const bmrCalculate = (
+    gender: Gender,
+    ageValue: number,
+    weightValue: number,
+    heightValue: number
+  ) => {
+    return "True";
+
   };
 
   return (
@@ -30,36 +54,50 @@ const BMR: React.FC = () => {
           keeping warm.
         </p>
         <div className={styling.center}>
+          <p>Enter Age </p>
           <TextField
             size="medium"
             placeholder="Enter Value"
-            onChange={(e) =>
-              !isNaN(parseInt(e.target.value)) &&
-              setTextValue(parseInt(e.target.value))
-            }
+            onChange={(e) => setAgeValue(parseInt(e.target.value))}
+            type="number"
           />
+          <p>Enter Height</p>
+          <TextField
+            size="medium"
+            placeholder="Enter Value"
+            onChange={(e) => setHeightValue(parseInt(e.target.value))}
+            type="number"
+          />
+          <p>Enter Weight</p>
+          <TextField
+            size="medium"
+            placeholder="Enter Value"
+            onChange={(e) => setWeightValue(parseInt(e.target.value))}
+            type="number"
+          />
+          <p></p>
           <FormControl>
-            <InputLabel id="demo-simple-select-helper-label">Age</InputLabel>
-            <Select value={gender} onChange={handleChange}>
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
+            <InputLabel>Gender</InputLabel>
+            <Select
+              className={styling.menu}
+              label="select-gender"
+              autoWidth={true}
+              value={gender}
+              onChange={(e) => setGender(e.target.value)}
+            >
               <MenuItem value={"Male"}>Male</MenuItem>
               <MenuItem value={"Female"}>Female</MenuItem>
             </Select>
-            <FormHelperText>Some important helper text</FormHelperText>
           </FormControl>
-          <p>{textValue}</p>
-          {/* <form>
-            <label>
-              Age:
-              <Input type="number" name="age" />
-              Height:
-              <Input type="number" name="height" />
-              Weight:
-              <Input type="number" name="weight" />
-            </label>
-          </form> */}
+          <p>
+            Age: {ageValue} Height: {heightValue} Weight: {weightValue}
+          </p>
+          <h3>Results:</h3>
+          <h4>
+            {disableSearch
+              ? bmrCalculate(gender, ageValue, weightValue, heightValue)
+              : ""}
+          </h4>
         </div>
       </div>
     </div>
