@@ -1,17 +1,28 @@
 import { TextField } from "@material-ui/core";
 import React from "react";
+import { useEffect } from "react";
 import { useState } from "react";
 import * as styling from "./BMR.style";
 
 const BMR: React.FC = () => {
-  const [ageValue, setAgeValue] = useState<number>();
-  const [weightValue, setWeightValue] = useState<number>();
-  const [heightValue, setHeightValue] = useState<number>();
+  const [ageValue, setAgeValue] = useState<number>(0);
+  const [weightValue, setWeightValue] = useState<number>(0);
+  const [heightValue, setHeightValue] = useState<number>(0);
+  const [disableSearch, setDisableSearch] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (ageValue >= 1 && heightValue >= 1 && weightValue >= 1) {
+      setDisableSearch(true);
+    } else {
+      setDisableSearch(false);
+    }
+  }, [ageValue, heightValue, weightValue]);
 
   // const myFunc = (param: number) => {
   //   return 0;
   // };
 
+  // {disableSearch ? "True" : "False"}
   return (
     <div>
       <div style={{ textAlign: "center" }}>
@@ -24,7 +35,7 @@ const BMR: React.FC = () => {
           keeping warm.
         </p>
         <div className={styling.center}>
-          <p>Enter Age</p>
+          <p>Enter Age </p>
           <TextField
             size="medium"
             placeholder="Enter Value"
