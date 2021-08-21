@@ -1,7 +1,9 @@
+import { px } from "csx";
 import { style as s } from "typestyle";
 
-export const content = s({
+export const body = s({
   textAlign: "left",
+  marginLeft: px(80),
 });
 
 export const app = s({
