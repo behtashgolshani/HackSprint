@@ -19,7 +19,10 @@ const BMR: React.FC = () => {
   const [heightValue, setHeightValue] = useState<number>(0);
   const [disableSearch, setDisableSearch] = useState<boolean>(false);
   const [gender, setGender] = useState<Gender>();
-  const [output, setOutput] = useState<string>("");
+  const [bmrOutput, setBmrOutput] = useState<string>("");
+  const [bmr, setBmr] = useState<number>(0);
+  const [calorie, setCalorie] = useState<number>(0);
+  const [calorieOutput, setCalorieOutput] = useState<string>("");
 
   useEffect(() => {
     if (
@@ -35,46 +38,57 @@ const BMR: React.FC = () => {
   }, [ageValue, heightValue, weightValue]);
 
   useEffect(() => {
-    setOutput(bmrCalculate(gender, ageValue, weightValue, heightValue));
+    setBmr(bmrCalculate(gender, ageValue, weightValue, heightValue));
   }, [gender, ageValue, weightValue, heightValue]);
+
+  useEffect(() => {
+    setBmrOutput("Your BMR is " + bmr?.toString() + " calories per day");
+  }, [bmr]);
+
+  useEffect(() => {
+    setCalorie(calorieCalculate(bmr));
+  }, [bmr, bmrOutput]);
+
+  useEffect(() => {
+    setCalorieOutput(
+      "Daily food energy intake based on BMR: " + calorie.toString()
+    );
+  }, [calorie]);
+
   const bmrCalculate = (
     gender: Gender,
     ageValue: number,
     weightValue: number,
     heightValue: number
   ) => {
-    let value: unknown;
+    let value: number;
+    value = 0;
     if (gender === "Male") {
-      return (
-        "Your BMR is " +
+      value = parseFloat(
         (
           88.362 +
           13.397 * weightValue +
           4.799 * heightValue -
           5.677 * ageValue +
           0.5
-        )
-          .toFixed(2)
-          .toString() +
-        " calories"
+        ).toFixed(2)
       );
     } else if (gender === "Female") {
-      return (
-        "Your BMR is " +
+      value = parseFloat(
         (
           447.593 +
           9.247 * weightValue +
           3.098 * heightValue -
           4.33 * ageValue +
           0.5
-        )
-          .toFixed(2)
-          .toString() +
-        " calories"
+        ).toFixed(2)
       );
-    } else {
-      return "";
     }
+    return value;
+  };
+
+  const calorieCalculate = (bmr: number) => {
+    return parseFloat((bmr * 1.2 + 0.5).toFixed(0));
   };
 
   return (
@@ -129,8 +143,9 @@ const BMR: React.FC = () => {
             Age: {ageValue} Height: {heightValue} Weight: {weightValue} Gender:{" "}
             {gender}
           </p>
-          <h3>Results:</h3>
-          <h4>{disableSearch ? output : ""}</h4>
+          <h2>{disableSearch && bmr !== 0 ? "Results:" : ""}</h2>
+          <h3>{disableSearch && bmr !== 0 ? bmrOutput : ""}</h3>
+          <h3>{disableSearch && bmr !== 0 ? calorieOutput : ""}</h3>
         </div>
       </div>
     </div>
