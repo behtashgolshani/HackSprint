@@ -27,3 +27,8 @@ export const red = s({
 export const blue = s({
   color: "#004DCF",
 });
+
+export const comment = s({
+  fontStyle: "italic",
+  color: "#194D33",
+});

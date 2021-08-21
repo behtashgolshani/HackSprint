@@ -51,7 +51,9 @@ const BMR: React.FC = () => {
 
   useEffect(() => {
     setCalorieOutput(
-      "Daily food energy intake based on BMR: " + calorie.toString()
+      "Daily food energy intake required to maintain BMR: " +
+        calorie.toString() +
+        " calories"
     );
   }, [calorie]);
 
@@ -139,19 +141,20 @@ const BMR: React.FC = () => {
               <MenuItem value={"Female"}>Female</MenuItem>
             </Select>
           </FormControl>
-          <p>
-            Age: {ageValue} Height: {heightValue} Weight: {weightValue} Gender:{" "}
-            {gender}
+          <p className={styling.comment}>
+            Please be aware that BMR measures the amount of calories burned when
+            sedentary. This does not take into account other health factors and
+            amount of exercise done. It is only an average estimate.
           </p>
-          <h2 className={styling.red}>
+          <h1 className={styling.red}>
             {disableSearch && bmr !== 0 ? "Results:" : ""}
-          </h2>
-          <h3 className={styling.blue}>
+          </h1>
+          <h2 className={styling.blue}>
             {disableSearch && bmr !== 0 ? bmrOutput : ""}
-          </h3>
-          <h3 className={styling.blue}>
+          </h2>
+          <h2 className={styling.blue}>
             {disableSearch && bmr !== 0 ? calorieOutput : ""}
-          </h3>
+          </h2>
         </div>
       </div>
     </div>
