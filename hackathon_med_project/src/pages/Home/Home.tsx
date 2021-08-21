@@ -24,14 +24,6 @@ const Home: React.FC = () => {
           <h2>Body Mass Index</h2>
           <p>Calculate your BMR with our BMR calculator!</p>
         </div>
-        <div className={style.block}>
-          <hr color="black"></hr>
-          <h2>Risk Predictor</h2>
-          <p>
-            Discover what risks you could face via our advanced data predictor
-            model!
-          </p>
-        </div>
       </div>
     </div>
   );
