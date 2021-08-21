@@ -81,8 +81,7 @@ const BMI: React.FC = () => {
     } else {
       setUnderweightSensor(false);
     }
-  }),
-    [heightValue, weightValue];
+  });
 
   useEffect(() => {
     if (weightValue >= 1 && heightValue >= 1) {
