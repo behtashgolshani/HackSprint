@@ -42,7 +42,7 @@ const BMR: React.FC = () => {
   }, [gender, ageValue, weightValue, heightValue]);
 
   useEffect(() => {
-    setBmrOutput("Your BMR is " + bmr?.toString() + " calories per day");
+    setBmrOutput("BMR = " + bmr?.toString() + " calories per day");
   }, [bmr]);
 
   useEffect(() => {
@@ -143,9 +143,15 @@ const BMR: React.FC = () => {
             Age: {ageValue} Height: {heightValue} Weight: {weightValue} Gender:{" "}
             {gender}
           </p>
-          <h2>{disableSearch && bmr !== 0 ? "Results:" : ""}</h2>
-          <h3>{disableSearch && bmr !== 0 ? bmrOutput : ""}</h3>
-          <h3>{disableSearch && bmr !== 0 ? calorieOutput : ""}</h3>
+          <h2 className={styling.red}>
+            {disableSearch && bmr !== 0 ? "Results:" : ""}
+          </h2>
+          <h3 className={styling.blue}>
+            {disableSearch && bmr !== 0 ? bmrOutput : ""}
+          </h3>
+          <h3 className={styling.blue}>
+            {disableSearch && bmr !== 0 ? calorieOutput : ""}
+          </h3>
         </div>
       </div>
     </div>

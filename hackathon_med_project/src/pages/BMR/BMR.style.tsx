@@ -21,9 +21,9 @@ export const menu = s({
 });
 
 export const red = s({
-  color: "red",
+  color: "#C2185B",
 });
 
 export const blue = s({
-  color: "blue",
+  color: "#004DCF",
 });
