@@ -2,8 +2,7 @@ import { style as s } from "typestyle";
 import { px } from "csx";
 
 export const title = s({
-  textAlign: "left",
-  marginLeft: px(470),
+  textAlign: "center",
 });
 
 export const marginalise_left = s({
