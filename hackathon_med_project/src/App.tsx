@@ -1,7 +1,6 @@
 import React from "react";
 import * as style from "./App.style";
-import { HeaderBar } from "./features/HeaderBar";
-import { Home } from "./pages/Home";
+import HeaderBar from "./features/HeaderBar/HeaderBar";
 import {
   BrowserRouter as Router,
   Route,
@@ -9,13 +8,30 @@ import {
   Switch,
 } from "react-router-dom";
 import routes from "./config/routes";
+import { createTheme, ThemeProvider } from "@material-ui/core";
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#000000",
+    },
+    secondary: { main: "#f1356d" },
+  },
+  typography: {
+    fontFamily: "Quicksand",
+    fontWeightLight: 400,
+    fontWeightRegular: 500,
+    fontWeightMedium: 600,
+    fontWeightBold: 700,
+  },
+});
 
 const App: React.FC = () => {
   return (
-    <Router>
-      <div className={style.app}>
-        <HeaderBar />
-        <div className={style.content}>
+    <ThemeProvider theme={theme}>
+      <Router>
+        <div className={style.app}>
+          <HeaderBar />
           <Switch>
             {Object.values(routes).map((route, index) => {
               return (
@@ -35,8 +51,8 @@ const App: React.FC = () => {
             })}
           </Switch>
         </div>
-      </div>
-    </Router>
+      </Router>
+    </ThemeProvider>
   );
 };
 

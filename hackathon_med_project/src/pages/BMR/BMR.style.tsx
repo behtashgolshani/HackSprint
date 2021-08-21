@@ -6,3 +6,16 @@ export const title = s({
   fontSize: px(24),
   marginLeft: px(120),
 });
+
+export const column = s({
+  columns: 2,
+  columnWidth: 10,
+});
+
+export const center = s({
+  textAlign: "center",
+});
+
+export const menu = s({
+  minWidth: 176,
+});

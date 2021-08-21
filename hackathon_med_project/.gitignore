@@ -9,6 +9,9 @@ package-lock.json
 # testing
 /coverage
 
+# Package-lock not req
+package-lock.json
+
 # production
 /build
 
