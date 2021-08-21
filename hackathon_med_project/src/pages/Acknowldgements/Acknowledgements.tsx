@@ -12,6 +12,18 @@ const Acknowledgements: React.FC = () => {
       </h3>
       <div>
         <p>https://localhost:3000</p>
+        <p>Insert links here</p>
+      </div>
+      <hr color="black"></hr>
+      <div>
+        <p>
+          Thanks to the creators of this project - Behtash Golshani, Niko
+          Verrios, Tim Jordan and Tim Han.{" "}
+        </p>
+        <p>Visit our github repository to clone this project:</p>
+        <a href="https://github.com/behtashgolshani/HackSprint">
+          https://github.com/behtashgolshani/HackSprint
+        </a>
       </div>
     </div>
   );
