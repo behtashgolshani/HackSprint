@@ -5,7 +5,7 @@ import pickle
 app = Flask(__name__)
 model = pickle.load(open('model.pkl', 'rb'))
 
-@app.route('/', methods=['GET'])
+@app.route('/riskpredictor', methods=['GET'])
 def hello():
     return render_template('form.html')
 
