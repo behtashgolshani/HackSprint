@@ -1,10 +1,17 @@
 import { style as s } from "typestyle";
-import { px } from "csx";
+import { px, percent } from "csx";
 
 export const title = s({
   textAlign: "left",
   fontSize: px(24),
   marginLeft: px(120),
+});
+
+export const content = s({
+  marginLeft: percent(2),
+  paddingTop: px(20),
+  textAlign: "center",
+  width: percent(90),
 });
 
 export const column = s({

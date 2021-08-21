@@ -5,11 +5,11 @@ import {
   Select,
   TextField,
 } from "@material-ui/core";
-import { type } from "os";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import * as styling from "./BMR.style";
+import * as appStyle from "../../App.style";
 
 type Gender = "male" | "female" | null | unknown;
 
@@ -94,11 +94,11 @@ const BMR: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className={appStyle.body}>
       <div style={{ textAlign: "center" }}>
         <h1>BMR - Basal Metabolic Rate Calculator</h1>
       </div>
-      <div style={{ textAlign: "center" }}>
+      <div className={styling.content}>
         <p>
           Basal Metabolic Rate (BMR) refers to the rate at which the body uses
           energy while at rest to maintain vital functions such as breathing and
@@ -156,6 +156,7 @@ const BMR: React.FC = () => {
             {disableSearch && bmr !== 0 ? calorieOutput : ""}
           </h2>
         </div>
+        <div className={appStyle.breakPage}></div>
       </div>
     </div>
   );
