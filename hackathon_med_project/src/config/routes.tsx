@@ -1,6 +1,7 @@
 import IRoute from "../interfaces/route";
 import BMI from "../pages/BMI/BMI";
 import BMR from "../pages/BMR/BMR";
+
 import RiskPredictor from "../pages/RiskPredictor/RiskPredictor";
 import { Home } from "../pages/Home/Home";
 
@@ -24,6 +25,7 @@ const bmr: IRoute = {
   component: BMR,
   exact: true,
 };
+
 
 const riskPredictor: IRoute = {
   path: "/RiskPredictor",
