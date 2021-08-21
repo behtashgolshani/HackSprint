@@ -21,6 +21,7 @@ const BMR: React.FC = () => {
   const [gender, setGender] = useState<Gender>();
   const [enableSearch, setEnableSearch] = useState<boolean>(true);
   const [bmr, setBmr] = useState<number>(0);
+  const [bmrOutput, setBmrOutput] = useState<string>("");
 
   useEffect(() => {
     if (
@@ -40,6 +41,10 @@ const BMR: React.FC = () => {
   useEffect(() => {
     setBmr(bmrCalculate(gender, ageValue, weightValue, heightValue));
   }, [gender, ageValue, weightValue, heightValue]);
+
+  useEffect(() => {
+    setBmrOutput("BMR is " + bmr?.toString() + " calories per day");
+  }, [bmr]);
 
   const bmrCalculate = (
     gender: Gender,
@@ -169,15 +174,20 @@ const BMR: React.FC = () => {
             </Select>
           </FormControl>
 
-          <h2>{disableSearch ? "Results:" : ""}</h2>
-          <h3 className={styling.requirement1}>{disableSearch ? bmr : ""}</h3>
+          <h2 className={styling.red}>
+            {disableSearch && bmr !== 0 ? "Results:" : ""}
+          </h2>
+          <h3 className={styling.requirement2}>
+            {" "}
+            {disableSearch && bmr !== 0 ? bmrOutput : ""}
+          </h3>
           <h3 className={styling.requirement2}>
             {enableSearch ? "Please enter details above" : ""}
-            <h3 className={styling.requirement2}>
-              {disableSearch
-                ? calCalculate(gender, ageValue, weightValue, heightValue)
-                : ""}
-            </h3>
+          </h3>
+          <h3 className={styling.requirement2}>
+            {disableSearch
+              ? calCalculate(gender, ageValue, weightValue, heightValue)
+              : ""}
           </h3>
           <p className={styling.comment}>
             Please be aware that BMR measures the amount of calories burned when
