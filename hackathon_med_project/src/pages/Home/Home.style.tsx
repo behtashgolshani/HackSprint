@@ -6,8 +6,9 @@ export const title = s({
 });
 
 export const content = s({
-  paddingLeft: percent(5),
+  marginLeft: percent(2),
   paddingTop: px(20),
+
   width: percent(90),
 });
 

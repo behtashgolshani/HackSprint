@@ -7,5 +7,6 @@ export const body = s({
 });
 
 export const app = s({
-  color: "#000000",
+  backgroundImage: `url(${process.env.PUBLIC_URL + "/bluebackground.jpg"})`,
+  backgroundRepeat: "repeat",
 });
