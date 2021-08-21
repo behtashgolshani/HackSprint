@@ -11,6 +11,26 @@ export const content = s({
   width: percent(90),
 });
 
-export const references = {
+export const references = s({
   fontSize: px(20),
-};
+});
+
+export const behtash = s({
+  marginLeft: px(20),
+  color: "red",
+});
+
+export const niko = s({
+  marginLeft: px(20),
+  color: "orange",
+});
+
+export const han = s({
+  marginLeft: px(20),
+  color: "navy",
+});
+
+export const jordan = s({
+  marginLeft: px(20),
+  color: "purple",
+});
