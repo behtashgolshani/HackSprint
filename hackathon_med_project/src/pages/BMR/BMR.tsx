@@ -1,14 +1,22 @@
-import { TextField } from "@material-ui/core";
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+  FormHelperText,
+} from "@material-ui/core";
 import React from "react";
 import { useState } from "react";
 import * as styling from "./BMR.style";
 
 const BMR: React.FC = () => {
   const [textValue, setTextValue] = useState<number>();
+  const [gender, setGender] = useState<string>("");
 
-  // const myFunc = (param: number) => {
-  //   return 0;
-  // };
+  const handleChange = (event: any) => {
+    setGender(event.target.value);
+  };
 
   return (
     <div>
@@ -30,6 +38,17 @@ const BMR: React.FC = () => {
               setTextValue(parseInt(e.target.value))
             }
           />
+          <FormControl>
+            <InputLabel id="demo-simple-select-helper-label">Age</InputLabel>
+            <Select value={gender} onChange={handleChange}>
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              <MenuItem value={"Male"}>Male</MenuItem>
+              <MenuItem value={"Female"}>Female</MenuItem>
+            </Select>
+            <FormHelperText>Some important helper text</FormHelperText>
+          </FormControl>
           <p>{textValue}</p>
           {/* <form>
             <label>
