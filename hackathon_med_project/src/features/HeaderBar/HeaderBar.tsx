@@ -25,7 +25,7 @@ const HeaderBar: React.FC = () => {
           component={Link}
           to={routes.bmr.path}
         >
-          BMR
+          BMR Calculator
         </Button>
         <Button
           color="secondary"

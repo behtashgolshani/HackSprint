@@ -1,10 +1,10 @@
 import React from "react";
 import * as style from "./Acknowledgements.style";
-import { body as appStyle } from "../../App.style";
+import * as appStyle from "../../App.style";
 
 const Acknowledgements: React.FC = () => {
   return (
-    <div className={appStyle}>
+    <div className={appStyle.body}>
       <div className={style.content}>
         <h1 className={style.title}>Aknowledgements</h1>
         <h3>
@@ -39,6 +39,7 @@ const Acknowledgements: React.FC = () => {
             to clone this project:
           </p>
         </div>
+        <div className={appStyle.breakPage}></div>
       </div>
     </div>
   );

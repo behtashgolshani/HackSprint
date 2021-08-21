@@ -1,6 +1,9 @@
 import React from "react";
 import * as style from "./Home.style";
 import * as appStyle from "../../App.style";
+import { Button } from "@material-ui/core";
+import routes from "../../config/routes";
+import { Link } from "react-router-dom";
 
 const Home: React.FC = () => {
   return (
@@ -17,12 +20,33 @@ const Home: React.FC = () => {
         <div className={style.block}>
           <hr color="black"></hr>
           <h2>Basal Metabolic Rate</h2>
-          <p>Calculate your BMI with our BMI calculator!</p>
+          <p>Calculate your BMR with our BMR calculator!</p>
+          <Button
+            variant="contained"
+            color="secondary"
+            className={style.button}
+            size="medium"
+            component={Link}
+            to={routes.bmr.path}
+          >
+            Go To BMR Calculator
+          </Button>
         </div>
         <div className={style.block}>
           <hr color="black"></hr>
           <h2>Body Mass Index</h2>
-          <p>Calculate your BMR with our BMR calculator!</p>
+          <p>Calculate your BMI with our BMI calculator!</p>
+          <Button
+            variant="contained"
+            color="primary"
+            className={style.button}
+            size="medium"
+            component={Link}
+            to={routes.bmi.path}
+          >
+            Go To BMI Calculator
+          </Button>
+          <div className={appStyle.breakPage}></div>
         </div>
       </div>
     </div>

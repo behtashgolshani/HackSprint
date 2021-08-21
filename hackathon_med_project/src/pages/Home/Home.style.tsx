@@ -14,5 +14,7 @@ export const content = s({
 });
 
 export const block = s({
-  marginTop: px(100),
+  marginTop: px(60),
 });
+
+export const button = s({ fontSize: px(30) });
