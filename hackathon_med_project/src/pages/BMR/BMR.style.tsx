@@ -41,6 +41,7 @@ export const requirement1 = s({
 export const requirement2 = s({
   color: "navy",
   textAlign: "center",
+});
 
 export const red = s({
   color: "#C2185B",

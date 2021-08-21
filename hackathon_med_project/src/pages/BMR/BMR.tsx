@@ -6,9 +6,8 @@ import {
   TextField,
 } from "@material-ui/core";
 import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
-import { style } from "typestyle";
+import { useEffect, useState } from "react";
+import {} from "react";
 import * as styling from "./BMR.style";
 import * as appStyle from "../../App.style";
 
@@ -20,12 +19,8 @@ const BMR: React.FC = () => {
   const [heightValue, setHeightValue] = useState<number>(0);
   const [disableSearch, setDisableSearch] = useState<boolean>(false);
   const [gender, setGender] = useState<Gender>();
-  const [output, setOutput] = useState<string>("");
   const [enableSearch, setEnableSearch] = useState<boolean>(true);
-  const [bmrOutput, setBmrOutput] = useState<string>("");
   const [bmr, setBmr] = useState<number>(0);
-  const [calorie, setCalorie] = useState<number>(0);
-  const [calorieOutput, setCalorieOutput] = useState<string>("");
 
   useEffect(() => {
     if (
@@ -78,17 +73,12 @@ const BMR: React.FC = () => {
     return value;
   };
 
-  const calorieCalculate = (bmr: number) => {
-    return parseFloat((bmr * 1.2 + 0.5).toFixed(0));
-  };
-
   const calCalculate = (
     gender: Gender,
     ageValue: number,
     weightValue: number,
     heightValue: number
   ) => {
-    let value: unknown;
     if (gender === "Male") {
       return (
         "Your caloric need is " +
@@ -171,19 +161,16 @@ const BMR: React.FC = () => {
               value={gender}
               onChange={(e) => setGender(e.target.value)}
             >
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
               <MenuItem value={"Male"}>Male</MenuItem>
               <MenuItem value={"Female"}>Female</MenuItem>
             </Select>
           </FormControl>
-          <p className={styling.comment}>
-            Please be aware that BMR measures the amount of calories burned when
-            sedentary. This does not take into account other health factors and
-            amount of exercise done. It is only an average estimate.
-          </p>
+
           <h2>{disableSearch ? "Results:" : ""}</h2>
-          <h3 className={styling.requirement1}>
-            {disableSearch ? output : ""}
-          </h3>
+          <h3 className={styling.requirement1}>{disableSearch ? bmr : ""}</h3>
           <h3 className={styling.requirement2}>
             {enableSearch ? "Please enter details above" : ""}
             <h3 className={styling.requirement2}>
@@ -192,6 +179,11 @@ const BMR: React.FC = () => {
                 : ""}
             </h3>
           </h3>
+          <p className={styling.comment}>
+            Please be aware that BMR measures the amount of calories burned when
+            sedentary. This does not take into account other health factors and
+            amount of exercise done. It is only an average estimate.
+          </p>
         </div>
         <div className={appStyle.breakPage}></div>
       </div>
