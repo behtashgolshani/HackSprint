@@ -6,3 +6,8 @@ export const title = s({
   fontSize: px(24),
   marginLeft: px(120),
 });
+
+export const column = s({
+  textAlign: "center",
+  columnCount: 2,
+});
