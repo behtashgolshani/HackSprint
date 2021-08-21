@@ -39,6 +39,7 @@ const BMR: React.FC = () => {
     heightValue: number
   ) => {
     return "True";
+
   };
 
   return (
