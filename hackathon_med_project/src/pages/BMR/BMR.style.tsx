@@ -19,3 +19,11 @@ export const center = s({
 export const menu = s({
   minWidth: 176,
 });
+
+export const red = s({
+  color: "red",
+});
+
+export const blue = s({
+  color: "blue",
+});
