@@ -1,7 +1,6 @@
 import IRoute from "../interfaces/route";
 import BMI from "../pages/BMI/BMI";
 import BMR from "../pages/BMR/BMR";
-import RiskPredictor from "../pages/RiskPredictor/RiskPredictor";
 import Home from "../pages/Home/Home";
 import Acknowledgements from "../pages/Acknowldgements/Acknowledgements";
 
@@ -26,13 +25,6 @@ const bmr: IRoute = {
   exact: true,
 };
 
-const riskPredictor: IRoute = {
-  path: "/RiskPredictor",
-  name: "Risk Predictor",
-  component: RiskPredictor,
-  exact: true,
-};
-
 const acknowledgements: IRoute = {
   path: "/Acknowledgements",
   name: "Acknowledgements",
@@ -40,6 +32,6 @@ const acknowledgements: IRoute = {
   exact: true,
 };
 
-const routes = { home, bmi, bmr, riskPredictor, acknowledgements };
+const routes = { home, bmi, bmr, acknowledgements };
 
 export default routes;

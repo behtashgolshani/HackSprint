@@ -41,15 +41,6 @@ const HeaderBar: React.FC = () => {
           className={style.indLinks}
           size="small"
           component={Link}
-          to={routes.riskPredictor.path}
-        >
-          Risk Predictor
-        </Button>
-        <Button
-          color="secondary"
-          className={style.indLinks}
-          size="small"
-          component={Link}
           to={routes.acknowledgements.path}
         >
           Acknowledgements
