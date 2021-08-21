@@ -8,6 +8,10 @@ export const title = s({
 });
 
 export const column = s({
+  columns: 2,
+  columnWidth: 10,
+});
+
+export const center = s({
   textAlign: "center",
-  columnCount: 2,
 });
