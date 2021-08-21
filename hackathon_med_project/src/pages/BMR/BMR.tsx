@@ -5,6 +5,7 @@ import {
   Select,
   TextField,
 } from "@material-ui/core";
+import { type } from "os";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -18,6 +19,7 @@ const BMR: React.FC = () => {
   const [heightValue, setHeightValue] = useState<number>(0);
   const [disableSearch, setDisableSearch] = useState<boolean>(false);
   const [gender, setGender] = useState<Gender>();
+  const [output, setOutput] = useState<string>("");
 
   useEffect(() => {
     if (
@@ -32,14 +34,47 @@ const BMR: React.FC = () => {
     }
   }, [ageValue, heightValue, weightValue]);
 
+  useEffect(() => {
+    setOutput(bmrCalculate(gender, ageValue, weightValue, heightValue));
+  }, [gender, ageValue, weightValue, heightValue]);
   const bmrCalculate = (
     gender: Gender,
     ageValue: number,
     weightValue: number,
     heightValue: number
   ) => {
-    return "True";
-
+    let value: unknown;
+    if (gender === "Male") {
+      return (
+        "Your BMR is " +
+        (
+          88.362 +
+          13.397 * weightValue +
+          4.799 * heightValue -
+          5.677 * ageValue +
+          0.5
+        )
+          .toFixed(2)
+          .toString() +
+        " calories"
+      );
+    } else if (gender === "Female") {
+      return (
+        "Your BMR is " +
+        (
+          447.593 +
+          9.247 * weightValue +
+          3.098 * heightValue -
+          4.33 * ageValue +
+          0.5
+        )
+          .toFixed(2)
+          .toString() +
+        " calories"
+      );
+    } else {
+      return "";
+    }
   };
 
   return (
@@ -56,23 +91,24 @@ const BMR: React.FC = () => {
         <div className={styling.center}>
           <p>Enter Age </p>
           <TextField
+            className={styling.center}
             size="medium"
-            placeholder="Enter Value"
-            onChange={(e) => setAgeValue(parseInt(e.target.value))}
+            placeholder="Enter Age in Years"
+            onChange={(e) => setAgeValue(parseFloat(e.target.value))}
             type="number"
           />
           <p>Enter Height</p>
           <TextField
             size="medium"
-            placeholder="Enter Value"
-            onChange={(e) => setHeightValue(parseInt(e.target.value))}
+            placeholder="Enter Height in cm"
+            onChange={(e) => setHeightValue(parseFloat(e.target.value))}
             type="number"
           />
           <p>Enter Weight</p>
           <TextField
             size="medium"
-            placeholder="Enter Value"
-            onChange={(e) => setWeightValue(parseInt(e.target.value))}
+            placeholder="Enter Weight in kg"
+            onChange={(e) => setWeightValue(parseFloat(e.target.value))}
             type="number"
           />
           <p></p>
@@ -90,14 +126,11 @@ const BMR: React.FC = () => {
             </Select>
           </FormControl>
           <p>
-            Age: {ageValue} Height: {heightValue} Weight: {weightValue}
+            Age: {ageValue} Height: {heightValue} Weight: {weightValue} Gender:{" "}
+            {gender}
           </p>
           <h3>Results:</h3>
-          <h4>
-            {disableSearch
-              ? bmrCalculate(gender, ageValue, weightValue, heightValue)
-              : ""}
-          </h4>
+          <h4>{disableSearch ? output : ""}</h4>
         </div>
       </div>
     </div>
