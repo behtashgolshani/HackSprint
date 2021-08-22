@@ -19,24 +19,35 @@ const BMR: React.FC = () => {
   const [heightValue, setHeightValue] = useState<number>(0);
   const [disableSearch, setDisableSearch] = useState<boolean>(false);
   const [gender, setGender] = useState<Gender>();
-  const [enableSearch, setEnableSearch] = useState<boolean>(true);
   const [bmr, setBmr] = useState<number>(0);
   const [bmrOutput, setBmrOutput] = useState<string>("");
+  const [validationError, setValidationError] = useState<string>("");
 
   useEffect(() => {
+    const validationList: string[] = [];
     let value: unknown;
-    if (
-      ageValue >= 1 &&
-      heightValue >= 1 &&
-      weightValue >= 1 &&
-      gender !== null &&
-      gender !== value
-    ) {
+    if (!(ageValue >= 1)) {
+      validationList.push("age");
+    }
+
+    if (!(heightValue >= 1)) {
+      validationList.push("height");
+    }
+
+    if (!(weightValue >= 1)) {
+      validationList.push("weight");
+    }
+    if (!gender || gender === value) {
+      validationList.push("gender");
+    }
+
+    if (validationList.length) {
+      setValidationError(
+        `Please enter a valid ${validationList.join(" and ")}.`
+      );
       setDisableSearch(true);
-      setEnableSearch(false);
     } else {
       setDisableSearch(false);
-      setEnableSearch(true);
     }
   }, [ageValue, heightValue, weightValue, gender]);
 
@@ -47,6 +58,10 @@ const BMR: React.FC = () => {
   useEffect(() => {
     setBmrOutput("BMR is " + bmr?.toString() + " calories per day");
   }, [bmr]);
+
+  const incorrectDetails = () => {
+    return <h2 className={styling.wrongDetails}>{validationError}</h2>;
+  };
 
   const bmrCalculate = (
     gender: Gender,
@@ -168,26 +183,23 @@ const BMR: React.FC = () => {
               value={gender}
               onChange={(e) => setGender(e.target.value)}
             >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
               <MenuItem value={"Male"}>Male</MenuItem>
               <MenuItem value={"Female"}>Female</MenuItem>
             </Select>
           </FormControl>
 
           <h2 className={styling.red}>
-            {disableSearch && bmr !== 0 ? "Results:" : ""}
+            {!disableSearch && bmr !== 0 ? "Results:" : ""}
           </h2>
           <h3 className={styling.requirement2}>
             {" "}
-            {disableSearch && bmr !== 0 ? bmrOutput : ""}
+            {!disableSearch && bmr !== 0 ? bmrOutput : ""}
           </h3>
           <h3 className={styling.requirement2}>
-            {enableSearch ? "Please enter details above" : ""}
+            {disableSearch ? incorrectDetails() : ""}
           </h3>
           <h3 className={styling.requirement2}>
-            {disableSearch
+            {!disableSearch
               ? calCalculate(gender, ageValue, weightValue, heightValue)
               : ""}
           </h3>

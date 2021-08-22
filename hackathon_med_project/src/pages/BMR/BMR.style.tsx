@@ -55,3 +55,9 @@ export const comment = s({
   fontStyle: "italic",
   color: "#194D33",
 });
+
+export const wrongDetails = s({
+  textAlign: "center",
+  color: "red",
+  fontSize: px(20),
+});

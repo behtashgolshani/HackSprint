@@ -24,59 +24,50 @@ const BMI: React.FC = () => {
   };
 
   useEffect(() => {
-    if (
-      disableSearch &&
-      parseFloat(bmiCalculate(heightValue, weightValue)) >= 35
-    ) {
-      setDamnSensor(true);
+    if (!disableSearch) {
+      if (parseFloat(bmiCalculate(heightValue, weightValue)) >= 35) {
+        setDamnSensor(true);
+      } else {
+        setDamnSensor(false);
+      }
+
+      if (
+        parseFloat(bmiCalculate(heightValue, weightValue)) >= 30 &&
+        parseFloat(bmiCalculate(heightValue, weightValue)) < 35
+      ) {
+        setObesitySensor(true);
+      } else {
+        setObesitySensor(false);
+      }
+
+      if (
+        parseFloat(bmiCalculate(heightValue, weightValue)) >= 25 &&
+        parseFloat(bmiCalculate(heightValue, weightValue)) < 30
+      ) {
+        setOverweightSensor(true);
+      } else {
+        setOverweightSensor(false);
+      }
+
+      if (
+        parseFloat(bmiCalculate(heightValue, weightValue)) < 25 &&
+        parseFloat(bmiCalculate(heightValue, weightValue)) >= 18.5
+      ) {
+        setNormalSensor(true);
+      } else {
+        setNormalSensor(false);
+      }
+
+      if (parseFloat(bmiCalculate(heightValue, weightValue)) < 18.5) {
+        setUnderweightSensor(true);
+      } else {
+        setUnderweightSensor(false);
+      }
     } else {
       setDamnSensor(false);
-    }
-  });
-
-  useEffect(() => {
-    if (
-      disableSearch &&
-      parseFloat(bmiCalculate(heightValue, weightValue)) >= 30 &&
-      parseFloat(bmiCalculate(heightValue, weightValue)) < 35
-    ) {
-      setObesitySensor(true);
-    } else {
-      setObesitySensor(false);
-    }
-  });
-
-  useEffect(() => {
-    if (
-      disableSearch &&
-      parseFloat(bmiCalculate(heightValue, weightValue)) >= 25 &&
-      parseFloat(bmiCalculate(heightValue, weightValue)) < 30
-    ) {
-      setOverweightSensor(true);
-    } else {
-      setOverweightSensor(false);
-    }
-  });
-
-  useEffect(() => {
-    if (
-      disableSearch &&
-      parseFloat(bmiCalculate(heightValue, weightValue)) < 25 &&
-      parseFloat(bmiCalculate(heightValue, weightValue)) >= 18.5
-    ) {
-      setNormalSensor(true);
-    } else {
       setNormalSensor(false);
-    }
-  });
-
-  useEffect(() => {
-    if (
-      disableSearch &&
-      parseFloat(bmiCalculate(heightValue, weightValue)) < 18.5
-    ) {
-      setUnderweightSensor(true);
-    } else {
+      setObesitySensor(false);
+      setOverweightSensor(false);
       setUnderweightSensor(false);
     }
   });
