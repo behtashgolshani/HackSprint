@@ -1,5 +1,4 @@
 import React from "react";
-import SplitPane, { Pane } from "react-split-pane";
 import { useState } from "react";
 import * as appStyle from "../../App.style";
 import * as style from "./BMI.style";
@@ -7,19 +6,16 @@ import { useEffect } from "react";
 import { TextField } from "@material-ui/core";
 import { px } from "csx";
 
-import { truncate } from "fs";
-import { height } from "@material-ui/system";
-
 const BMI: React.FC = () => {
   const [weightValue, setWeightValue] = useState<number>(0);
   const [heightValue, setHeightValue] = useState<number>(0);
   const [disableSearch, setDisableSearch] = useState<boolean>(false);
-  const [enableSearch, setEnableSearch] = useState<boolean>(true);
   const [underweightSensor, setUnderweightSensor] = useState<boolean>(false);
   const [normalSensor, setNormalSensor] = useState<boolean>(false);
   const [overweightSensor, setOverweightSensor] = useState<boolean>(false);
   const [obesitySensor, setObesitySensor] = useState<boolean>(false);
   const [damnSensor, setDamnSensor] = useState<boolean>(false);
+  const [validationError, setValidationError] = useState<string>("");
 
   const bmiCalculate = (heightValue: number, weightValue: number) => {
     return ((weightValue / heightValue / heightValue) * 10000 + 0.05).toFixed(
@@ -86,17 +82,31 @@ const BMI: React.FC = () => {
   });
 
   useEffect(() => {
-    if (weightValue >= 1 && heightValue >= 1) {
+    const validationList: string[] = [];
+    if (!(weightValue >= 1)) {
+      validationList.push("weight");
+    }
+    if (!(heightValue >= 1)) {
+      validationList.push("height");
+    }
+
+    if (validationList.length > 0) {
+      setValidationError(
+        `Please enter a correct ${validationList.join(" and ")}.`
+      );
       setDisableSearch(true);
-      setEnableSearch(false);
     } else {
-      setEnableSearch(true);
       setDisableSearch(false);
     }
   }, [weightValue, heightValue]);
   //{disableSearch ? "True" : "False";}
+
+  const incorrectDetails = () => {
+    return <h2 className={style.wrongDetails}>{validationError}</h2>;
+  };
+
   return (
-    <div>
+    <div className={appStyle.body}>
       <h1 className={style.title}>BMI - Body Mass Index</h1>
       <p className={style.title}>
         {" "}
@@ -123,8 +133,15 @@ const BMI: React.FC = () => {
           style={{ textAlign: "center" }}
           onChange={(e) => setHeightValue(parseFloat(e.target.value))}
         ></TextField>{" "}
-        <h1>{disableSearch ? "BMI Results" : ""}</h1>
-        <p> {disableSearch ? bmiCalculate(heightValue, weightValue) : ""}</p>
+        <h1>{!disableSearch ? "BMI Results" : incorrectDetails()}</h1>
+        <p>
+          {" "}
+          {!disableSearch ? (
+            <h2>{bmiCalculate(heightValue, weightValue)}</h2>
+          ) : (
+            ""
+          )}
+        </p>
         <h3 style={{ color: "#004DCF" }}>
           {underweightSensor ? "You are considered underweight" : ""}
         </h3>
@@ -166,7 +183,6 @@ const BMI: React.FC = () => {
             ? "It is important that you consult your health profession such as a doctor or a dietitian. Your health professional may offer you many options to support you in losing weight."
             : ""}
         </p>
-        <h2 style={{ textAlign: "center" }}>Please enter your details</h2>
       </div>
       <p className={style.disclaimer}>
         {" "}

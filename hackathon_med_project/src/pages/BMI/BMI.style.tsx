@@ -69,3 +69,9 @@ export const disclaimer = s({
   marginLeft: px(150),
   marginRight: px(150),
 });
+
+export const wrongDetails = s({
+  textAlign: "center",
+  color: "red",
+  fontSize: px(20),
+});
