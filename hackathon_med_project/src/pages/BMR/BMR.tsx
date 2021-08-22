@@ -24,11 +24,13 @@ const BMR: React.FC = () => {
   const [bmrOutput, setBmrOutput] = useState<string>("");
 
   useEffect(() => {
+    let value: unknown;
     if (
       ageValue >= 1 &&
       heightValue >= 1 &&
       weightValue >= 1 &&
-      gender !== null
+      gender !== null &&
+      gender !== value
     ) {
       setDisableSearch(true);
       setEnableSearch(false);
@@ -36,7 +38,7 @@ const BMR: React.FC = () => {
       setDisableSearch(false);
       setEnableSearch(true);
     }
-  }, [ageValue, heightValue, weightValue]);
+  }, [ageValue, heightValue, weightValue, gender]);
 
   useEffect(() => {
     setBmr(bmrCalculate(gender, ageValue, weightValue, heightValue));
@@ -86,7 +88,7 @@ const BMR: React.FC = () => {
   ) => {
     if (gender === "Male") {
       return (
-        "Your caloric need is " +
+        "Daily calorie intake needed to maintain BMR is " +
         (
           (88.362 +
             13.397 * weightValue +
@@ -95,13 +97,13 @@ const BMR: React.FC = () => {
             0.5) *
           1.2
         )
-          .toFixed(2)
+          .toFixed(0)
           .toString() +
         " calories"
       );
     } else if (gender === "Female") {
       return (
-        "Your caloric need is " +
+        "Daily calorie intake needed to maintain BMR is " +
         (
           (447.593 +
             9.247 * weightValue +
@@ -110,7 +112,7 @@ const BMR: React.FC = () => {
             0.5) *
           1.2
         )
-          .toFixed(2)
+          .toFixed(0)
           .toString() +
         " calories"
       );
